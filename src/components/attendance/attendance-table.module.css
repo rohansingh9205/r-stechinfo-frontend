@@ -1,0 +1,40 @@
+.container{
+background:#fff;
+padding:25px;
+border-radius:16px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.topBar{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.search{
+width:320px;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:10px;
+}
+
+.container table{
+width:100%;
+border-collapse:collapse;
+}
+
+.container th{
+background:#0f172a;
+color:#fff;
+padding:14px;
+text-align:left;
+}
+
+.container td{
+padding:14px;
+border-bottom:1px solid #e5e7eb;
+}
+
+.container tr:hover{
+background:#f8fafc;
+}

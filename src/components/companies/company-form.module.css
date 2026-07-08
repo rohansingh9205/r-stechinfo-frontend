@@ -1,0 +1,68 @@
+.container{
+background:#fff;
+padding:25px;
+border-radius:16px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.container h2{
+margin-bottom:25px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.inputGroup{
+display:flex;
+flex-direction:column;
+}
+
+.inputGroup label{
+margin-bottom:8px;
+font-weight:600;
+}
+
+.inputGroup input,
+.inputGroup select{
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:10px;
+outline:none;
+}
+
+.addressBox{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+}
+
+.addressBox label{
+margin-bottom:8px;
+font-weight:600;
+}
+
+.addressBox textarea{
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:10px;
+resize:none;
+outline:none;
+}
+
+.buttonArea{
+display:flex;
+justify-content:flex-end;
+gap:15px;
+margin-top:25px;
+}
+
+.cancel{
+background:#6b7280;
+}
+
+.save{
+background:#2563eb;
+}

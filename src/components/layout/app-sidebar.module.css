@@ -1,0 +1,113 @@
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  height: 100vh;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.logoBox {
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logoSection h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.logoSection p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1e293b;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.searchBox input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
+.searchBox input::placeholder {
+  color: #94a3b8;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 15px;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  transition: .25s;
+}
+
+.menuItem:hover {
+  background: #2563eb;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.bottomCard {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.userIcon {
+  font-size: 42px;
+}
+
+.bottomCard h4 {
+  margin: 0;
+}
+
+.bottomCard p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+}
