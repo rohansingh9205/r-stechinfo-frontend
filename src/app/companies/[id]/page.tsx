@@ -1,9 +1,16 @@
 "use client";
 
-export default function Page() {
+import AppLayout from "../../../components/layout/app-layout";
+import CompanyProfile from "../../../components/companies/company-profile";
+import { useParams } from "next/navigation";
+
+
+export default function CompanyProfilePage() {
+  const params = useParams();
+
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Coming Soon</h1>
-    </div>
+    <AppLayout>
+      <CompanyProfile id={params.id as string} />
+    </AppLayout>
   );
 }
