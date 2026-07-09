@@ -13,7 +13,7 @@ export default function LoginPage() {
     const loggedIn = localStorage.getItem("loggedIn");
 
     if (loggedIn === "true") {
-      router.push("/");
+      router.replace("/dashboard");
     }
   }, [router]);
 
@@ -27,7 +27,7 @@ export default function LoginPage() {
 
     alert("Login Successful");
 
-    router.push("/");
+    router.replace("/dashboard");
   }
 
   return (
