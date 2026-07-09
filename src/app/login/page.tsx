@@ -1,9 +1,34 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("loggedIn");
+
+    if (loggedIn === "true") {
+      router.push("/");
+    }
+  }, [router]);
+
+  function login() {
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
+
+    localStorage.setItem("loggedIn", "true");
+
+    alert("Login Successful");
+
+    router.push("/");
+  }
 
   return (
     <div
@@ -18,72 +43,84 @@ export default function LoginPage() {
       <div
         style={{
           width: "400px",
-          padding: "30px",
           background: "#fff",
-          borderRadius: "12px",
-          boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+          padding: "35px",
+          borderRadius: "18px",
+          boxShadow: "0 10px 25px rgba(0,0,0,.08)",
         }}
       >
         <h1
           style={{
+            marginTop: 0,
             textAlign: "center",
-            marginBottom: "20px",
           }}
         >
-          R&S HRMS
+          HRMS Login
         </h1>
 
         <input
-          type="email"
           placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           style={{
             width: "100%",
-            padding: "12px",
-            marginBottom: "12px",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            boxSizing: "border-box",
+            padding: "14px",
+            marginTop: "20px",
+            borderRadius: "10px",
+            border: "1px solid #d1d5db",
           }}
         />
 
         <input
           type="password"
           placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           style={{
             width: "100%",
-            padding: "12px",
-            marginBottom: "16px",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            boxSizing: "border-box",
+            padding: "14px",
+            marginTop: "16px",
+            borderRadius: "10px",
+            border: "1px solid #d1d5db",
           }}
         />
 
+        <div
+          style={{
+            textAlign: "right",
+            marginTop: "10px",
+          }}
+        >
+          <button
+            onClick={() => router.push("/forgot-password")}
+            style={{
+              background: "transparent",
+              border: "none",
+              color: "#2563eb",
+              cursor: "pointer",
+              fontWeight: 600,
+            }}
+          >
+            Forgot Password?
+          </button>
+        </div>
+
         <button
-          onClick={() => router.push("/dashboard")}
+          onClick={login}
           style={{
             width: "100%",
-            padding: "12px",
+            marginTop: "20px",
+            padding: "14px",
             border: "none",
-            borderRadius: "8px",
             background: "#2563eb",
             color: "#fff",
+            borderRadius: "10px",
             cursor: "pointer",
-            fontWeight: "bold",
+            fontWeight: 700,
           }}
         >
           Login
         </button>
-
-        <p
-          style={{
-            marginTop: "15px",
-            textAlign: "center",
-            color: "#666",
-          }}
-        >
-          Demo Login - Any Email & Password
-        </p>
       </div>
     </div>
   );

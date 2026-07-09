@@ -1,0 +1,108 @@
+.container{
+background:#fff;
+padding:25px;
+border-radius:16px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.description{
+margin-top:8px;
+color:#64748b;
+}
+
+.uploadBox{
+margin-top:20px;
+border:2px dashed #94a3b8;
+border-radius:14px;
+padding:40px;
+text-align:center;
+}
+
+.uploadBox h3{
+margin:0;
+}
+
+.uploadBox p{
+margin:14px 0;
+color:#64748b;
+}
+
+.browse{
+background:#2563eb;
+color:#fff;
+border:none;
+padding:12px 22px;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+}
+
+.fileInfo{
+margin-top:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+background:#f8fafc;
+border-radius:10px;
+}
+
+.fileInfo p{
+margin-top:5px;
+font-size:13px;
+color:#64748b;
+}
+
+.remove{
+background:#fee2e2;
+color:#dc2626;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.buttons{
+margin-top:25px;
+display:flex;
+justify-content:flex-end;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.sample{
+background:#f1f5f9;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+}
+
+.upload{
+background:#2563eb;
+color:#fff;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+}
+
+@media(max-width:768px){
+
+.fileInfo{
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+}
+
+.buttons{
+flex-direction:column;
+}
+
+.buttons button{
+width:100%;
+}
+
+}

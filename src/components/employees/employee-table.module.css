@@ -1,6 +1,286 @@
-.container{
-background:#fff;
-padding:20px;
-border-radius:16px;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+/* src/components/employees/employee-table.module.css */
+
+.container {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 260px;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid #dbe4ee;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.25s;
+  background: #fff;
+}
+
+.searchInput:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.select {
+  min-width: 180px;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #dbe4ee;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.select:focus {
+  border-color: #2563eb;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1050px;
+}
+
+.table thead {
+  background: #f8fafc;
+}
+
+.table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid #eef2f7;
+  font-size: 14px;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: 0.2s;
+}
+
+.table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.employeeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.employeeName {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.employeeEmail {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.active {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.inactive {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+.leave {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewButton,
+.editButton,
+.deleteButton {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.viewButton {
+  color: #2563eb;
+  background: #dbeafe;
+}
+
+.viewButton:hover {
+  background: #bfdbfe;
+}
+
+.editButton {
+  color: #0f766e;
+  background: #ccfbf1;
+}
+
+.editButton:hover {
+  background: #99f6e4;
+}
+
+.deleteButton {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.deleteButton:hover {
+  background: #fecaca;
+}
+
+.empty {
+  padding: 32px;
+  text-align: center;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.pagination {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.paginationInfo {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pageButton {
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid #dbe4ee;
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: 600;
+}
+
+.pageButton:hover:not(:disabled) {
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.pageButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.activePage {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.activePage:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchInput,
+  .select {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .paginationControls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 18px;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .viewButton,
+  .editButton,
+  .deleteButton {
+    width: 100%;
+  }
 }

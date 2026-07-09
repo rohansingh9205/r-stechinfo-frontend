@@ -1,47 +1,157 @@
-.container{
-    background:#ffffff;
-    padding:25px;
-    border-radius:16px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+.container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
 }
 
-.container h2{
-    margin-bottom:20px;
-    font-size:24px;
-    font-weight:700;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.table{
-    width:100%;
-    border-collapse:collapse;
+.header h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 700;
 }
 
-.table th{
-    background:#0f172a;
-    color:#fff;
-    padding:14px;
-    text-align:left;
+.uploadButton {
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: .25s;
 }
 
-.table td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
+.uploadButton:hover {
+  background: #1d4ed8;
 }
 
-.table tr:hover{
-    background:#f8fafc;
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
 }
 
-.viewButton{
-    background:#2563eb;
-    color:#fff;
-    border:none;
-    padding:8px 14px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
 }
 
-.viewButton:hover{
-    background:#1d4ed8;
+.table thead {
+  background: #f8fafc;
+}
+
+.table th {
+  text-align: left;
+  padding: 14px 16px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid #eef2f7;
+  color: #334155;
+  font-size: 14px;
+}
+
+.table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.verified {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.viewButton {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.viewButton:hover {
+  background: #bfdbfe;
+}
+
+.downloadButton {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.downloadButton:hover {
+  background: #bbf7d0;
+}
+
+.deleteButton {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.deleteButton:hover {
+  background: #fecaca;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 18px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .uploadButton {
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
 }
