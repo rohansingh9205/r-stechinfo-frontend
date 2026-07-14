@@ -1,41 +1,45 @@
 "use client";
 
-import AppLayout from "../../../../components/layout/app-layout";
-import EmployeeForm from "../../../../components/employees/employee-form";
+import AppLayout from "@/components/layout/app-layout";
+import CompanyForm from "@/components/companies/company-form";
 
-export default function EditEmployeePage() {
-  
-
-
+export default function EditCompanyPage() {
 
   return (
+
     <AppLayout>
+
       <div
         style={{
           marginBottom: "24px",
         }}
       >
+
         <h1
           style={{
-            margin: 0,
             fontSize: "32px",
             fontWeight: 700,
+            marginBottom: "8px",
           }}
         >
-          Edit Employee
+          Edit Company
         </h1>
 
         <p
           style={{
-            marginTop: "8px",
             color: "#64748b",
+            fontSize: "15px",
           }}
         >
-          Update employee information.
+          Update company information.
         </p>
+
       </div>
 
-      <EmployeeForm/>
+      <CompanyForm />
+
     </AppLayout>
+
   );
+
 }

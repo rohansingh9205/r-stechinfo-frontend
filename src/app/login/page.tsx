@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+const API_URL = "http://localhost:8080/api/auth/login";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,18 +18,54 @@ export default function LoginPage() {
     }
   }, [router]);
 
-  function login() {
-    if (!email || !password) {
-      alert("Please enter email and password");
-      return;
+  async function login() {
+
+  if (!email || !password) {
+    alert("Please enter email and password");
+    return;
+  }
+
+  try {
+
+    const response = await fetch(API_URL, {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+
+    });
+
+    if (!response.ok) {
+
+      const errorText = await response.text();
+      throw new Error(errorText);
+
     }
+
+    const data = await response.json();
+
+    localStorage.setItem("token", data.token);
 
     localStorage.setItem("loggedIn", "true");
 
-    alert("Login Successful");
+    alert(data.message);
 
     router.replace("/dashboard");
+
+  } catch (error: any) {
+
+    alert(error.message);
+
   }
+
+}
 
   return (
     <div

@@ -1,79 +1,68 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./company-table.module.css";
+import {
+  getCompanies,
+  deleteCompany,
+} from "@/lib/api";
 
 interface Company {
   id: number;
-  company: string;
-  admin: string;
-  employees: number;
-  gst: string;
-  pf: string;
-  esi: string;
-  status: "Active" | "Inactive";
+  companyName: string;
+  adminName: string;
+  gstNumber: string;
+  pfNumber: string;
+  esiNumber: string;
+  status: string;
 }
-
-const companyData: Company[] = [
-  {
-    id: 1,
-    company: "Khushi Hind",
-    admin: "Rohan Singh",
-    employees: 125,
-    gst: "09ABCDE1234F1Z5",
-    pf: "PF123456",
-    esi: "ESI654321",
-    status: "Active",
-  },
-  {
-    id: 2,
-    company: "ABC Industries",
-    admin: "Amit Kumar",
-    employees: 84,
-    gst: "07PQRS1234A1Z2",
-    pf: "PF789654",
-    esi: "ESI963258",
-    status: "Active",
-  },
-  {
-    id: 3,
-    company: "Tech Vision Pvt Ltd",
-    admin: "Neha Sharma",
-    employees: 63,
-    gst: "07TECH1234A1Z8",
-    pf: "PF852963",
-    esi: "ESI456789",
-    status: "Inactive",
-  },
-  {
-    id: 4,
-    company: "Global Infosys",
-    admin: "Raj Mehta",
-    employees: 205,
-    gst: "24GLOBAL4567A1Z5",
-    pf: "PF112233",
-    esi: "ESI112233",
-    status: "Active",
-  },
-];
 
 const PAGE_SIZE = 5;
 
 export default function CompanyTable() {
+
   const router = useRouter();
 
+  const [companyData, setCompanyData] = useState<Company[]>([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
+  useEffect(() => {
+
+    async function loadCompanies() {
+
+      try {
+
+        const data = await getCompanies();
+
+        setCompanyData(data);
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
+
+    }
+
+    loadCompanies();
+
+  }, []);
+
   const filteredCompanies = useMemo(() => {
-    return companyData.filter(
-      (company) =>
-        company.company.toLowerCase().includes(search.toLowerCase()) ||
-        company.admin.toLowerCase().includes(search.toLowerCase()) ||
-        company.gst.toLowerCase().includes(search.toLowerCase())
+
+    return companyData.filter((company) =>
+
+      company.companyName.toLowerCase().includes(search.toLowerCase()) ||
+
+      company.adminName.toLowerCase().includes(search.toLowerCase()) ||
+
+      company.gstNumber.toLowerCase().includes(search.toLowerCase())
+
     );
-  }, [search]);
+
+  }, [companyData, search]);
 
   const totalPages = Math.max(
     1,
@@ -93,25 +82,50 @@ export default function CompanyTable() {
     router.push(`/companies/edit/${id}`);
   };
 
-  const handleDelete = (name: string) => {
-    const ok = window.confirm(`Delete ${name}?`);
+ const handleDelete = async (id: number, name: string) => {
 
-    if (!ok) return;
+  console.log("Delete clicked", id, name);
 
-    alert(`${name} deleted successfully. (Dummy CRUD)`);
-  };
+  const ok = window.confirm(`Delete ${name}?`);
+
+  if (!ok) return;
+
+  try {
+
+    await deleteCompany(id);
+
+    setCompanyData((prev) =>
+      prev.filter((company) => company.id !== id)
+    );
+
+    alert("Company deleted successfully.");
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Delete failed.");
+
+  }
+
+};
 
   return (
+
     <div className={styles.container}>
+
       <div className={styles.topBar}>
+
         <input
           className={styles.search}
           type="text"
           placeholder="Search Company..."
           value={search}
           onChange={(e) => {
+
             setSearch(e.target.value);
             setPage(1);
+
           }}
         />
 
@@ -121,11 +135,15 @@ export default function CompanyTable() {
         >
           + Add Company
         </button>
+
       </div>
 
       <table className={styles.table}>
+
         <thead>
+
           <tr>
+
             <th>Company</th>
             <th>Admin</th>
             <th>Employees</th>
@@ -134,27 +152,43 @@ export default function CompanyTable() {
             <th>ESI</th>
             <th>Status</th>
             <th>Action</th>
+
           </tr>
+
         </thead>
 
         <tbody>
+
           {companies.map((company) => (
+
             <tr key={company.id}>
-              <td>{company.company}</td>
-              <td>{company.admin}</td>
-              <td>{company.employees}</td>
-              <td>{company.gst}</td>
-              <td>{company.pf}</td>
-              <td>{company.esi}</td>
+
+              <td>{company.companyName}</td>
+
+              <td>{company.adminName}</td>
+
+              <td>0</td>
+
+              <td>{company.gstNumber}</td>
+
+              <td>{company.pfNumber}</td>
+
+              <td>{company.esiNumber}</td>
 
               <td>
+
                 <span className={styles.status}>
+
                   {company.status}
+
                 </span>
+
               </td>
 
               <td>
+
                 <div className={styles.action}>
+
                   <button
                     className={styles.view}
                     onClick={() => handleView(company.id)}
@@ -170,20 +204,24 @@ export default function CompanyTable() {
                   </button>
 
                   <button
-                    className={styles.delete}
-                    onClick={() =>
-                      handleDelete(company.company)
-                    }
-                  >
-                    Delete
-                  </button>
+  className={styles.delete}
+  onClick={() => handleDelete(company.id, company.companyName)}
+>
+  Delete
+</button>
+
                 </div>
+
               </td>
+
             </tr>
+
           ))}
 
           {companies.length === 0 && (
+
             <tr>
+
               <td
                 colSpan={8}
                 style={{
@@ -194,9 +232,13 @@ export default function CompanyTable() {
               >
                 No company found.
               </td>
+
             </tr>
+
           )}
+
         </tbody>
+
       </table>
 
       <div
@@ -209,8 +251,11 @@ export default function CompanyTable() {
           gap: "10px",
         }}
       >
+
         <span>
+
           Showing {companies.length} of {filteredCompanies.length}
+
         </span>
 
         <div
@@ -219,6 +264,7 @@ export default function CompanyTable() {
             gap: "10px",
           }}
         >
+
           <button
             disabled={page === 1}
             onClick={() => setPage((p) => p - 1)}
@@ -232,8 +278,13 @@ export default function CompanyTable() {
           >
             Next
           </button>
+
         </div>
+
       </div>
+
     </div>
+
   );
+
 }
